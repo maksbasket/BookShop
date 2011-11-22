@@ -2,10 +2,10 @@ require 'spec_helper'
 
 describe ProductsController do
 
-  def valid_attributes
+  def valid_attributes(options={})
     {:title => 'Book',
      :description => 'Wonderful Book', 	 	
-     :image_url => 'book.jpg',
+     :image => attach_image('rtp.jpg', options),
      :price => 10.99}
   end
 
@@ -44,18 +44,18 @@ describe ProductsController do
     describe "with valid params" do
       it "creates a new Product" do
         expect {
-          post :create, :product => valid_attributes
+          post :create, :product => valid_attributes(:file_upload => true)
         }.to change(Product, :count).by(1)
       end
 
       it "assigns a newly created product as @product" do
-        post :create, :product => valid_attributes
+        post :create, :product => valid_attributes(:file_upload => true)
         assigns(:product).should be_a(Product)
         assigns(:product).should be_persisted
       end
 
       it "redirects to the created product" do
-        post :create, :product => valid_attributes
+        post :create, :product => valid_attributes(:file_upload => true)
         response.should redirect_to(Product.last)
       end
     end
@@ -80,7 +80,7 @@ describe ProductsController do
   describe "PUT update" do
     describe "with valid params" do
       it "updates the requested product" do
-        product = Product.create! valid_attributes
+        product = Product.create! valid_attributes(:file_upload => true)
         # Assuming there are no other products in the database, this
         # specifies that the Product created on the previous line
         # receives the :update_attributes message with whatever params are
@@ -90,13 +90,13 @@ describe ProductsController do
       end
 
       it "assigns the requested product as @product" do
-        product = Product.create! valid_attributes
+        product = Product.create! valid_attributes(:file_upload => true)
         put :update, :id => product.id, :product => valid_attributes
         assigns(:product).should eq(product)
       end
 
       it "redirects to the product" do
-        product = Product.create! valid_attributes
+        product = Product.create! valid_attributes(:file_upload => true)
         put :update, :id => product.id, :product => valid_attributes
         response.should redirect_to(product)
       end
@@ -104,7 +104,7 @@ describe ProductsController do
 
     describe "with invalid params" do
       it "assigns the product as @product" do
-        product = Product.create! valid_attributes
+        product = Product.create! valid_attributes(:file_upload => true)
         # Trigger the behavior that occurs when invalid params are submitted
         Product.any_instance.stub(:save).and_return(false)
         put :update, :id => product.id, :product => {}
@@ -112,7 +112,7 @@ describe ProductsController do
       end
 
       it "re-renders the 'edit' template" do
-        product = Product.create! valid_attributes
+        product = Product.create! valid_attributes(:file_upload => true)
         # Trigger the behavior that occurs when invalid params are submitted
         Product.any_instance.stub(:save).and_return(false)
         put :update, :id => product.id, :product => {}
@@ -131,7 +131,7 @@ describe ProductsController do
 
     it "redirects to the products list" do
       product = Product.create! valid_attributes
-      delete :destroy, :id => product.id
+      delete :destroy, :id => product.id.to_s
       response.should redirect_to(products_url)
     end
   end

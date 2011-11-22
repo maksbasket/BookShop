@@ -25,7 +25,15 @@ RSpec.configure do |config|
   # examples within a transaction, remove the following line or assign false
   # instead of true.
   config.use_transactional_fixtures = true
-
+  
+  def attach_image(image_name, options={})
+    path = "spec/fixtures/images/#{image_name}"
+    if options[:file_upload]
+      fixture_file_upload(path, "image/#{image_name.split(".").last}")
+    else
+      File.new("#{Rails.root}/#{path}")
+    end
+  end
   # If true, the base class of anonymous controllers will be inferred
   # automatically. This will be the default behavior in future versions of
   # rspec-rails.
