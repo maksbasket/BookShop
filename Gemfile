@@ -9,6 +9,8 @@ gem 'sqlite3'
 gem 'execjs'
 gem 'therubyracer'
 gem 'formtastic'
+gem 'dragonfly', '~>0.9.8'
+gem 'rack-cache', :require => 'rack/cache'
 
 # Gems used only for assets and not required
 # in production environments by default.

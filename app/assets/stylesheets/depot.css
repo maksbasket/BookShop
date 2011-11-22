@@ -27,10 +27,10 @@
         vertical-align: top;
 }
 
-#product_list .list_image {
+/*#product_list .list_image {
   width:        60px;
   height:       70px;
-}
+}*/
 
 #product_list .list_description {
   width:        60%;

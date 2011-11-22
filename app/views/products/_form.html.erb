@@ -2,7 +2,8 @@
   <%= f.inputs do %>
     <%= f.input :title %>
     <%= f.input :description %>
-    <%= f.input :image_url%>
+    <%= f.input :image, :label => image_for(@product), :as => :file %>
+    <%= f.input :retained_image, :as => :hidden %>
     <%= f.input :price %>
   <% end %>
   <%= f.buttons do %>
