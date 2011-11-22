@@ -6,7 +6,9 @@
     <tr class="<%= cycle('list_line_odd', 'list_line_even') %>">
 
       <td>
-        <%= image_for(product) %>
+       <% product.images.each do |image| %>
+         <%= render_image_for image %>
+       <% end %>
       </td>
 
       <td class="list_description">

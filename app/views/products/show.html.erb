@@ -12,7 +12,9 @@
 
 <p>
   <b>Image url:</b>
-  <%= image_for @product, '145x174' %>
+  <% @product.images.each do |image| %>
+    <%= render_image_for image, :resolution => '145x174' %>
+  <% end %>
 </p>
 
 <p>

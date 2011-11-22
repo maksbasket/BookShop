@@ -5,7 +5,6 @@ describe ProductsController do
   def valid_attributes(options={})
     {:title => 'Book',
      :description => 'Wonderful Book', 	 	
-     :image => attach_image('rtp.jpg', options),
      :price => 10.99}
   end
 

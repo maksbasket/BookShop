@@ -110,4 +110,7 @@
   font-weight: bold;
   margin-right: 2em;
 }
+.formtastic .with_inputs {
+  margin-left: 25%;
+}
 

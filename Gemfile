@@ -11,6 +11,7 @@ gem 'therubyracer'
 gem 'formtastic'
 gem 'dragonfly', '~>0.9.8'
 gem 'rack-cache', :require => 'rack/cache'
+gem 'nested_form', :git => 'git://github.com/ryanb/nested_form.git'
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -24,6 +25,7 @@ gem 'jquery-rails'
 
 group :test, :development do
   gem 'rspec-rails'
+  gem 'factory_girl'
 end
 
 # To use ActiveModel has_secure_password
