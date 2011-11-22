@@ -3,7 +3,7 @@ require 'spec_helper'
 describe Product do
   before(:each) do
     @attr = {	
-     :title => 'Book',
+     :title => 'My first book',
      :description => 'Wonderful Book',
      :price => 10.99,
      :image_url => 'book.jpg'
@@ -17,8 +17,8 @@ describe Product do
   it "should require a title" do
     product = Product.new(@attr.merge(:title => ''))
     product.should_not be_valid
-  end
-  
+  end 
+
   it "should require a description" do
     product = Product.new(@attr.merge(:description => ''))
     product.should_not be_valid
@@ -55,5 +55,11 @@ describe Product do
       product = Product.new(@attr.merge(:image_url => image_url))
       product.should_not be_valid
     end
+  end
+
+    it "should have title at least 10 characters long" do
+    short_name = "a"*9
+    short_name = Product.new(@attr.merge(:title => short_name))
+    short_name.should_not be_valid
   end
 end
