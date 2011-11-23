@@ -1,9 +1,8 @@
 Bookshop::Application.routes.draw do
 
-  resources :line_items
+  resources :line_items, :only => [:create]
 
-  resources :carts
-
+  get 'cart'
   get "store/index"
 
   resources :products do 

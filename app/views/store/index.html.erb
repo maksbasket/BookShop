@@ -1,9 +1,5 @@
-<% if notice %>
-  <p id="notice" ><%= notice %></p>
-<% end %>
-
 <h1>Your Pragmatic Catalog</h1>
-
+(You see it <%= pluralize(@counter, 'time') %>)
 <% @products.each do |product| %>
   <div class="entry" >
     <% product.images.each do |image| %>

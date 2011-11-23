@@ -9,4 +9,14 @@ class ApplicationController < ActionController::Base
       session[:cart_id] = cart.id
       cart
     end
+
+  protected
+
+    def counter
+      session[:counter] ||= 0
+    end
+
+    def counter=(count)
+      session[:counter] = count
+    end
 end
