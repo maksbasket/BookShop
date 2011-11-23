@@ -1,6 +1,7 @@
 class Product < ActiveRecord::Base
   
   has_many :images, :dependent => :destroy
+  has_many :comments, :dependent => :destroy
   accepts_nested_attributes_for :images, :allow_destroy => true
 
   validates :title, :description, :presence => true

@@ -36,12 +36,28 @@ Product.create!(:title => 'Rails Test Prescriptions',
   :price => 43.75)
 
 ##### Images
-image_filenames = %w{ debug.jpg rtp.jpg ruby.jpg wd4d.jpg }
+image_filenames = %w{ debug.jpg rtp.jpg ruby.jpg  }
 
 Product.all.each do |product|
   image_filenames.each do |filename|
     Image.create(:file => File.new("#{Rails.root}/public/images/#{filename}"),
                  :product => product)
+    break
+  end
+end
+
+
+#***Comment***
+
+Comment.destroy_all
+
+Product.all.each do |product|
+  parent_ids = [nil]
+  10.times do |i|
+    parent_ids << Comment.create!(:name => "User #{i}",
+                                 :text => "Comment #{i}.\nTrololo.",
+                                 :product => product,                              
+                                 :parent_id => parent_ids.shuffle.last).id
   end
 end
 

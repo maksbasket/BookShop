@@ -1,0 +1,12 @@
+<h1>Add a comment about the "<%= @product.title %>"</h1>
+<%= semantic_form_for @comment, :url => product_comments_path(@product) do |f| %>
+  <%= f.inputs do %>
+    <%= f.input :name %>
+    <%= f.input :text, :label => 'Comment' %>
+  <% end %>
+  <%= f.buttons do %>
+    <%= f.commit_button %>
+  <% end %>
+<% end %>
+
+<%= link_to 'Back', product_path(@product) %>
