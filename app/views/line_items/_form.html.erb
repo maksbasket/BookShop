@@ -1,0 +1,10 @@
+<%= semantic_form_for @line_item do |f| %>
+  <%= f.inputs do %>
+    <%= f.input :product_id %>
+    <%= f.input :cart_id %>
+  <% end %>
+
+  <%= f.buttons do %>
+    <%= f.commit_button %>
+  <% end %>
+<% end %>

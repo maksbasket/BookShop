@@ -14,6 +14,8 @@ class Product < ActiveRecord::Base
 
   after_create :create_root_comment
   before_destroy :destroy_root_comment
+  before_destroy :ensure_not_referenced_by_any_line_item
+
 
   def root_comment
     @root_comment ||= Comment.where(:parent_id => nil,
@@ -31,5 +33,14 @@ class Product < ActiveRecord::Base
 
   def destroy_root_comment
     root_comment.destroy
+  end
+
+  def ensure_not_referenced_by_any_line_item
+    if line_items.count.zero?
+      return true
+    else
+      errors.add(:base, 'Line Items present')
+      return false
+    end
   end
 end
