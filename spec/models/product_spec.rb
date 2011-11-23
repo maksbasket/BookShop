@@ -6,30 +6,14 @@ describe Product do
     expect { Factory(:ruby) }.to change(Product, :count).by(1)
   end
   
-  it "should require a title" do
-    product = Factory.build(:ruby, :title => nil)
-    product.should_not be_valid
-  end 
+  it { should validate_presence_of(:title) }
 
-  it "should require a description" do
-    product = Product.new(@attr.merge(:description => ''))
-    product.should_not be_valid
-  end  
-  
-  it "should reject invalid price" do
-    product = Factory.build(:ruby, :price => 0.009)
-    product.should_not be_valid
-  end
-  
-  it "should reject duplicate title" do
-    Factory(:ruby)
-    product = Factory.build(:ruby)
-    product.should_not be_valid
-  end  
-  
-  it "should have title at least 10 characters long" do
-    short_name = "a"*9
-    short_name = Product.new(@attr.merge(:title => short_name))
-    short_name.should_not be_valid
-  end
+  it { should validate_presence_of(:description) }
+
+  it { should_not allow_value(0.009).for(:price) }
+
+  subject { Factory(:ruby) }
+  it { should validate_uniqueness_of(:title) }
+
+  it { should_not allow_value('123456789').for(:title) }
 end

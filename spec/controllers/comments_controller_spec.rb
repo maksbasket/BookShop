@@ -2,9 +2,9 @@ require 'spec_helper'
 
 describe CommentsController do
 
-def valid_attributes
+def valid_attributes(options={})
     { :name => 'User',
-      :text => 'Trololo!' }
+      :text => 'Trololo!' }.merge(options)
   end
 
   before :each do
@@ -20,7 +20,7 @@ def valid_attributes
 
   describe "POST 'create'" do
     it "should be successful" do
-      post :create, valid_attributes
+      post :create, valid_attributes(:product_id => @product.id)
       response.should be_success(:product_id => @product.id)
     end
   end

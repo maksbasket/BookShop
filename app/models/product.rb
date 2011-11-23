@@ -1,7 +1,7 @@
 class Product < ActiveRecord::Base
   
   has_many :images, :dependent => :destroy
-  has_many :comments, :dependent => :destroy
+  has_many :comments
   accepts_nested_attributes_for :images, :allow_destroy => true
 
   validates :title, :description, :presence => true
@@ -13,6 +13,7 @@ class Product < ActiveRecord::Base
 		    } 	    
 
   after_create :create_root_comment
+  before_destroy :destroy_root_comment
 
   def root_comment
     @root_comment ||= Comment.where(:parent_id => nil,
@@ -26,5 +27,9 @@ class Product < ActiveRecord::Base
                     :name => 'root',
                     :text => 'root',
                     :parent_id => nil)
+  end
+
+  def destroy_root_comment
+    root_comment.destroy
   end
 end

@@ -3,10 +3,9 @@ require 'spec_helper'
 describe StoreController do
 
   describe "GET 'index'" do
-    it "should be successful" do
-      get :index
-      response.should be_success
-    end
+    
+   before { get :index }
+    it { should respond_with(:success) }
 
     it "should show the Product" do
       product = Factory(:ruby)
