@@ -42,7 +42,7 @@ class ProductsController < ApplicationController
   # DELETE /products/1
   def destroy
     @product = Product.find(params[:id])
-    @product.destroy
+    flash[:notice] = @product.errors.to_a.join(", ") unless @product.destroy
     redirect_to products_url
   end
 end

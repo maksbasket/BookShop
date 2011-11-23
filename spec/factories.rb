@@ -31,4 +31,6 @@ FactoryGirl.define do
     text 'Trololo.'
     parent_id { product.root_comment.id }
   end
+
+  factory :cart
 end

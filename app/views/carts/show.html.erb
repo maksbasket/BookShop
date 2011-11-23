@@ -1,7 +1,18 @@
-  <h2>Your Pragmatic Cart</h2>
-  <ul>
-    <% @cart.line_items.each do |item| %>
-      <li><%= item.product.title %></li>
-    <% end %>
-  </ul>
+<div class="cart_title">Your cart</div>
+<table>
+  <% @cart.line_items.each do |item| %>
+    <tr>
+      <td><%= item.quantity %>&times;</td>
+      <td><%= item.product.title %></td>
+      <td class="item_price"><%= price_for item.total_price %></td>
+    </tr>
+  <% end %>
 
+  <tr class="total_line">
+    <td colspan="2">Total</td>
+    <td class="total_cell"><%= price_for @cart.total_price %></td>
+  </tr>
+</table>
+
+<%= button_to 'Empty cart', cart_destroy_path, :method => :delete,
+              :confirm => 'Are you sure?' %>

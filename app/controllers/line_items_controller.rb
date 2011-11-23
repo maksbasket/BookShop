@@ -4,13 +4,23 @@ class LineItemsController < ApplicationController
   def create
     @cart = current_cart
     product = Product.find(params[:product_id])
-    @line_item = @cart.line_items.build(:product => product)
+    @line_item = @cart.add_product(product)
   
     if @line_item.save
       self.counter = 0
-      redirect_to cart_path, notice: 'Line item was successfully created.' 
+      redirect_to cart_path
     else
-      render action: "new" 
+      redirect_to root_path, :notice => 'Cant add line item'
     end
+  end
+
+  def destroy
+    line_item = current_cart.line_items.find(params[:id])
+    line_item.destroy
+    flash[:notice] = "Line item was removed"
+  rescue ActiveRecord::RecordNotFound
+    flash[:notice] = "Can't remove this line_item"
+  ensure
+    redirect_to cart_path
   end
 end
