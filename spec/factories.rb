@@ -7,5 +7,6 @@ FactoryGirl.define do
         you should add Ruby to your toolbox.
       </p>}
     price 49.50
+    file File.new("#{Rails.root}/spec/fixtures/images/ruby.jpg")
   end
 end

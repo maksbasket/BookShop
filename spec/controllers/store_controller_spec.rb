@@ -4,9 +4,8 @@ describe StoreController do
 
   describe "GET 'index'" do
     it "should be successful" do
-      get 'index'
+      get :index
       response.should be_success
-      response.should have_selector("#cloumns $side a", :count => 4)
     end
 
     it "should show the Product" do

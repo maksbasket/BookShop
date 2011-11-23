@@ -2,17 +2,26 @@ require 'spec_helper'
 
 describe CommentsController do
 
+def valid_attributes
+    { :name => 'User',
+      :text => 'Trololo!' }
+  end
+
+  before :each do
+    @product = Factory(:ruby)
+  end
+
   describe "GET 'new'" do
     it "should be successful" do
-      get 'new'
+      get :new, :product_id => @product.id
       response.should be_success
     end
   end
 
-  describe "GET 'create'" do
+  describe "POST 'create'" do
     it "should be successful" do
-      get 'create'
-      response.should be_success
+      post :create, valid_attributes
+      response.should be_success(:product_id => @product.id)
     end
   end
 end

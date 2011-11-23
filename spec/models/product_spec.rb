@@ -1,20 +1,13 @@
 require 'spec_helper'
 
 describe Product do
-  before(:each) do
-    @attr = {	
-     :title => 'My first book',
-     :description => 'Wonderful Book',
-     :price => 10.99,
-     }
-  end
 
   it "should create a new instance given valid attributes" do
-    Product.create!(@attr)
+    expect { Factory(:ruby) }.to change(Product, :count).by(1)
   end
   
   it "should require a title" do
-    product = Product.new(@attr.merge(:title => ''))
+    product = Factory.build(:ruby, :title => nil)
     product.should_not be_valid
   end 
 
@@ -24,13 +17,13 @@ describe Product do
   end  
   
   it "should reject invalid price" do
-    product = Product.new(@attr.merge(:price => 0.009))
+    product = Factory.build(:ruby, :price => 0.009)
     product.should_not be_valid
   end
   
-  it "should reject dublicate title" do
-    Product.create!(@attr)
-    product = Product.new(@attr)
+  it "should reject duplicate title" do
+    Factory(:ruby)
+    product = Factory.build(:ruby)
     product.should_not be_valid
   end  
   
