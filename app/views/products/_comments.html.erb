@@ -1,9 +1,7 @@
-<div class="name">
-  <%= comment.name %>
-</div>
-<div class="time">
-  <%= comment.created_at %>
-</div>
-<div class="text">
-  <%= comment.text %>
-</div>
+<ul class="comments">
+  <% nested_set_options(product.root_comment, nil, :include_root => false) do |comment,level| %>   
+    <li style="margin-left:<%= 2 * level %>em">
+      <%= render 'comment', :comment => comment, :product => @product %>
+    </li>
+  <% end %>
+</ul>

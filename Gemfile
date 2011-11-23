@@ -12,6 +12,7 @@ gem 'formtastic'
 gem 'dragonfly', '~>0.9.8'
 gem 'rack-cache', :require => 'rack/cache'
 gem 'nested_form', :git => 'git://github.com/ryanb/nested_form.git'
+gem 'nested_set'
 
 # Gems used only for assets and not required
 # in production environments by default.

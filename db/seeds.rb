@@ -55,9 +55,9 @@ Product.all.each do |product|
   parent_ids = [nil]
   10.times do |i|
     parent_ids << Comment.create!(:name => "User #{i}",
-                                 :text => "Comment #{i}.\nTrololo.",
-                                 :product => product,                              
-                                 :parent_id => parent_ids.shuffle.last).id
+                                  :text => "Comment #{i}.\nTrololo.",
+                                  :product => product,                              
+                                  :parent_id => parent_ids.shuffle!.last).id
   end
 end
 

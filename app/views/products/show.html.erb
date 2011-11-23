@@ -27,10 +27,6 @@
 
 <%= link_to 'Edit', edit_product_path(@product) %> |
 <%= link_to 'Back', products_path %>
-<%= link_to 'Add a Comment', new_product_comment_path(@product) %>
+<%= link_to_new_comment 'Add a Comment', @product %>
 
-<ul class="comments">
-  <% @comments.each do |comment| %>
-    <li><%= render 'comments', :comment => comment %></li>
-  <% end %>
-</ul>
+<%= render 'comments', :product => @product %>

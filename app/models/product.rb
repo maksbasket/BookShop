@@ -11,4 +11,20 @@ class Product < ActiveRecord::Base
                     :message => 'must be at least 10 characters long',
 		    :hint => 'must be at least 10 characters long'
 		    } 	    
+
+  after_create :create_root_comment
+
+  def root_comment
+    @root_comment ||= Comment.where(:parent_id => nil,
+                                    :product_id => id).first if id
+  end
+
+  private
+
+  def create_root_comment
+    Comment.create!(:product => self,
+                    :name => 'root',
+                    :text => 'root',
+                    :parent_id => nil)
+  end
 end

@@ -3,6 +3,7 @@
   <%= f.inputs do %>
     <%= f.input :name %>
     <%= f.input :text, :label => 'Comment' %>
+    <%= f.input :parent_id, :as => :hidden, :value => params[:parent_id] %>
   <% end %>
   <%= f.buttons do %>
     <%= f.commit_button %>
