@@ -8,6 +8,10 @@ class CartsController < ApplicationController
     current_cart.destroy
     session[:cart_id] = nil
     
-    redirect_to root_path, :notice => 'Your cart is currently empty'
+    respond_to do |format|
+      format.html { redirect_to root_path, 
+                                :notice => 'Your cart is currently empty' }
+      format.js
+    end
   end
 end

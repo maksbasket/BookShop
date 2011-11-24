@@ -5,4 +5,9 @@ module ApplicationHelper
     number_to_currency(price, :format => '%n %u', :unit => '&euro;',
                        :separator => ',', :delimeter => ' ')
   end
+
+  def hidden_div_if(condition, attributes = {}, &block)
+    attributes["style"] = "display: none" if condition
+    content_tag("div", attributes, &block)
+  end
 end
