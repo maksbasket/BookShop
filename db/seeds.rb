@@ -70,11 +70,16 @@ end
 
 #Order
 
-pay_types = PayType.find(:all)
-
+pay_types = PayType.find(:all).to_a
+products = Product.find(:all).to_a
 (1..100).each do |i|
-  Order.create!(:name => "Customer #{i}", :address => "#{i} Main Street",
-                :email => "customer-#{i}@example.com",
-                :pay_type => pay_types.sample.last)
+  order = Order.create!(:name => "Customer #{i}", :address => "#{i} Main Street",
+                        :email => "customer-#{i}@example.com",
+                        :pay_type => pay_types.shuffle!.last)
+  products.each do |product|
+    LineItem.create!(:order => order, :price => product.price,
+                     :product => product)
+  end
 end
+
 

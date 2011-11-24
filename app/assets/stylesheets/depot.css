@@ -50,17 +50,17 @@
         margin: 0;
 }
 
-#product_list .list_actions {
+.list_actions {
   font-size:    x-small;
   text-align:   right;
   padding-left: 1em;
 }
 
-#product_list .list_line_even {
+.list_line_even {
   background:   #e0f8f8;
 }
 
-#product_list .list_line_odd {
+.list_line_odd {
   background:   #f8b0f8;
 }
 
@@ -218,3 +218,18 @@ margin-bottom: 10px;
   padding: 0.2em 1em;
 }
 
+#orders {
+  border-collapse: collapse;
+}
+
+#orders td {
+  padding: 0.4em;
+}
+
+#orders .name {
+  font-weight: bold;
+}
+
+#orders .pay_type {
+  font-style: italic;
+}

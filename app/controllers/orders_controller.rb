@@ -27,4 +27,8 @@ class OrdersController < ApplicationController
                              :order => 'created_at desc',
                              :per_page => 10
   end
+
+  def show
+    @order = Order.find params[:id]
+  end
 end

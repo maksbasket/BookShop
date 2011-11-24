@@ -1,6 +1,6 @@
 Bookshop::Application.routes.draw do
 
-  resources :orders
+  resources :orders, :only => [:new, :create, :index, :show]
 
   resources :line_items, :only => [:create, :destroy]
 
