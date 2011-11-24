@@ -1,7 +1,7 @@
 <%= hidden_div_if cart.line_items.empty?, :id => 'cart' do %>
   <div class="cart_title">Your cart</div>
   <table>
-    <%= render cart.line_items %>
+    <%= render cart.line_items, :with_remove_button => true %>
   
     <tr class="total_line">
       <td colspan="2">Total</td>
