@@ -38,10 +38,16 @@ FactoryGirl.define do
     name 'Check'
   end
 
+  factory :line_item do |line_item|
+    price 12.34
+    product { Factory(:product) }
+  end
+
   factory :order do |order|
     name "Customer"
     address "1st Main Street"
     email "customer@example.com"
     pay_type { Factory(:pay_type) }
+    line_items { [Factory(:line_item)] }
   end
 end
