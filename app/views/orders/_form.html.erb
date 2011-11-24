@@ -3,7 +3,7 @@
     <%= f.input :name %>
     <%= f.input :address %>
     <%= f.input :email %>
-    <%= f.input :pay_type, :collection => Order::PAYMENT_TYPES,
+    <%= f.input :pay_type, :collection => Order::PayType.find(:all),
 					  :prompt => 'Select a payment method' %>
   <% end %>
 

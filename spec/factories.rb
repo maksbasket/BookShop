@@ -33,4 +33,15 @@ FactoryGirl.define do
   end
 
   factory :cart
+
+  factory :pay_type do |pay_type|
+    name 'Check'
+  end
+
+  factory :order do |order|
+    name "Customer"
+    address "1st Main Street"
+    email "customer@example.com"
+    pay_type { Factory(:pay_type) }
+  end
 end

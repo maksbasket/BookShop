@@ -61,4 +61,20 @@ Product.all.each do |product|
   end
 end
 
+#PayType
+
+["Check", "Credit card", "Purchase order"].each do |name|
+  PayType.create!(:name => name)
+end
+
+
+#Order
+
+pay_types = PayType.find(:all)
+
+(1..100).each do |i|
+  Order.create!(:name => "Customer #{i}", :address => "#{i} Main Street",
+                :email => "customer-#{i}@example.com",
+                :pay_type => pay_types.sample.last)
+end
 
