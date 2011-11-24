@@ -156,25 +156,25 @@
   font-size: small;
 }
 
-.comments li {
+#comments li {
   list-style: none;
 }
 
-.comments .name {
+#comments .name {
   float: left;
   font-family: Tahoma;
   font-size: 0.9em;
   font-weight: bold;
 }
 
-.comments .time {
+#comments .time {
   float: left;
   font-family: Tahoma;
   font-size: 0.8em;
   margin: 0 0 0 1em;
 }
 
-.comments .text {
+#comments .text {
   clear: left;
 }
 
@@ -207,4 +207,14 @@ border-bottom: 1px dotted #595;
 margin-bottom: 10px;
 }
 
+.depot_form fieldset {
+  background: none repeat scroll 0 0 #EEFFEE;
+}
+
+.depot_form legend {
+  background: none repeat scroll 0 0 #114411;
+  color: #DDFFDD;
+  font-family: sans-serif;
+  padding: 0.2em 1em;
+}
 

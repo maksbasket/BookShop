@@ -1,28 +1,27 @@
-<p>
-  <b>Title:</b>
-  <%= @product.title %>
-</p>
+<div id="product">
+  <p>
+    <%= render 'images', :product => @product %>
+  </p>
 
-<p>
-  <b>Description:</b>
-  <%= sanitize @product.description %>
-</p>
+  <p>
+    <b>Title:</b>
+    <%= @product.title %>
+  </p>
 
-<p>
-  <b>Image url:</b>
-  <% @product.images.each do |image| %>
-    <%= render_image_for image, :resolution => '145x174' %>
-  <% end %>
-</p>
-
-<p>
-  <b>Price:</b>
-  <%= @product.price %>
-</p>
+  <p>
+    <b>Description:</b>
+    <%= sanitize @product.description %>
+  </p>
 
 
-<%= link_to 'Edit', edit_product_path(@product) %> |
-<%= link_to 'Back', products_path %>
-<%= link_to_new_comment 'Add a Comment', @product %>
+  <p>
+    <b>Price:</b>
+    <%= @product.price %>
+  </p>
 
+
+  <%= link_to 'Edit', edit_product_path(@product) %> |
+  <%= link_to 'Back', products_path %>
+  <%= link_to_new_comment 'Add a Comment', @product %>
+</div>
 <%= render 'comments', :product => @product %>

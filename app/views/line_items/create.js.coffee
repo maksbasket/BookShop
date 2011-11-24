@@ -1,3 +1,5 @@
+$('#notice').css 'display', 'none'
+
 html = $('<%= j(render @cart) %>')
 isNewItem = $('#current_item .quantity', html).attr('data-quantity') == "1"
 $('#current_item', html).css("display", "none") if isNewItem
