@@ -1,5 +1,5 @@
 <div class="name">
-  <%= comment.name %>
+  <%= comment.user.name %>
 </div>
 <div class="time">
   <%= comment.created_at %>
@@ -7,4 +7,6 @@
 <div class="text">
   <%= comment.text %>
 </div>
-<%= link_to_new_comment "Reply", product, comment %>
+<% if can? :create, Comment %>
+  <%= link_to_new_comment "Reply", product, comment %>
+<% end %>

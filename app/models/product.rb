@@ -29,7 +29,6 @@ class Product < ActiveRecord::Base
 
   def create_root_comment
     Comment.create!(:product => self,
-                    :name => 'root',
                     :text => 'root',
                     :parent_id => nil)
   end

@@ -5,10 +5,17 @@
         border: 2px solid red;
         padding: 1em;
         margin-bottom: 2em;
-        background-color: #f0f0f0;
+        background-color: #bfb;
         font: bold smaller sans-serif;
 }
 
+#store #alert {
+  color: #000;
+  padding: 1em;
+  margin-bottom: 2em;
+  background-color: #F8B0F8;
+  font: bold smaller sans-serif;
+}
 
 #store h1 {
         font:  150% sans-serif;
@@ -149,6 +156,7 @@
   padding-bottom: 1em;
   width: 16em;
   background: #141;
+  color: #efe;
 }
 
 #side a {

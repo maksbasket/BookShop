@@ -46,15 +46,22 @@ Product.all.each do |product|
   end
 end
 
+#user
+
+%w{admin user}.each do |name|
+  User.create!(:email => "#{name}@example.com", :password => name,
+               :password_confirmation => name, :remember_me => false,
+               :name => name, :role => name)  
+end
 
 #***Comment***
 
 Comment.destroy_all
-
+users = User.all
 Product.all.each do |product|
   parent_ids = [nil]
   10.times do |i|
-    parent_ids << Comment.create!(:name => "User #{i}",
+    parent_ids << Comment.create!(:user => users.sample,
                                   :text => "Comment #{i}.\nTrololo.",
                                   :product => product,                              
                                   :parent_id => parent_ids.shuffle!.last).id
@@ -70,12 +77,13 @@ end
 
 #Order
 
-pay_types = PayType.find(:all).to_a
-products = Product.find(:all).to_a
+users = User.all
+pay_types = PayType.all
+products = Product.all
 (1..100).each do |i|
   order = Order.create!(:name => "Customer #{i}", :address => "#{i} Main Street",
                         :email => "customer-#{i}@example.com",
-                        :pay_type => pay_types.shuffle!.last)
+                        :pay_type => pay_types.sample, user => users.sample)
   products.each do |product|
     LineItem.create!(:order => order, :price => product.price,
                      :product => product)

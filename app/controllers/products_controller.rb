@@ -1,19 +1,12 @@
 class ProductsController < ApplicationController
-  # GET /products
-  def index
-    @products = Product.all
-  end
+
+  load_and_authorize_resource
 
   # GET /products/1
   def show
     @product = Product.find(params[:id])
   end
-
-  # GET /products/new
-  def new
-    @product = Product.new
-  end
-
+  
   # GET /products/1/edit
   def edit
     @product = Product.find(params[:id])
@@ -21,7 +14,6 @@ class ProductsController < ApplicationController
 
   # POST /products
   def create
-    @product = Product.new(params[:product])
     if @product.save
       redirect_to @product, notice: 'Product was successfully created'
     else
@@ -46,9 +38,7 @@ class ProductsController < ApplicationController
     redirect_to products_url
   end
 
-  def who_bought
-    @product = Product.find(params[:id])
-
+  def who_bought    
     respond_to do |format|
       format.atom
     end

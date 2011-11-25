@@ -1,6 +1,10 @@
 Bookshop::Application.routes.draw do
 
-  resources :orders, :only => [:new, :create, :index, :show]
+  devise_for :users
+
+  resources :orders, :only => [:new, :create, :index, :show] do
+    put 'ship', :on => :member
+  end
 
   resources :line_items, :only => [:create, :destroy]
 

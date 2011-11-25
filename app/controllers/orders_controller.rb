@@ -1,17 +1,15 @@
 class OrdersController < ApplicationController
 
+  load_and_authorize_resource
+
   def new
     @cart = current_cart
-    if @cart.line_items.empty?
-      redirect_to store_url, :notice => 'Your cart is empty'
-      return
-    end
-    @order = Order.new
+    redirect_to store_url, :notice => 'Your cart is empty' if @cart.line_items.empty?
   end
 
   def create
-    @order = Order.new params[:order]
     @order.add_line_items_from_cart current_cart
+    @order.user = current_user if current_user
 
     if @order.save
       Cart.destroy(session[:cart_id])
@@ -24,12 +22,19 @@ class OrdersController < ApplicationController
   end
 
   def index
-    @orders = Order.paginate :page => params[:page],
-                             :order => 'created_at desc',
-                             :per_page => 10
+    @orders = @orders.paginate(:page => params[:page], :per_page => 10,
+                             :order => 'created_at desc')
+                        
   end
 
   def show
     @order = Order.find params[:id]
+  end
+
+  def ship
+    if @order.ship
+      Notifier.order_shipped(@order).deliver
+      redirect_to order_path(@order), :notice => 'The Order marked as shipped'
+    end
   end
 end

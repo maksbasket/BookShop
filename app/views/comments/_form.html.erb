@@ -2,7 +2,6 @@
                       :html => { :id => comments_form_id(params[:reply_to]) },
                       :remote => true do |f| %>
   <%= f.inputs do %>
-    <%= f.input :name %>
     <%= f.input :text, :label => 'Comment', :input_html => { :rows => 7 }%>
     <%= f.input :parent_id, :as => :hidden, :value => params[:reply_to] %>
   <% end %>

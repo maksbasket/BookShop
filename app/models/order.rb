@@ -2,6 +2,7 @@ class Order < ActiveRecord::Base
 
   has_many :line_items, :dependent => :destroy
   belongs_to :pay_type
+  belongs_to :user
 
   validates :name, :address, :email, :pay_type, :presence => true
 
@@ -10,5 +11,10 @@ class Order < ActiveRecord::Base
       item.cart_id = nil
       line_items << item
     end
+  end
+
+  def ship
+    self.ship_date = Time.zone.now
+    save
   end
 end

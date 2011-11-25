@@ -1,4 +1,6 @@
 class Notifier < ActionMailer::Base
+  helper :application 
+ 
   default from: "depot@example.com"
 
   def order_received(order)

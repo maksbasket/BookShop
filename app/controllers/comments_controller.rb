@@ -1,17 +1,10 @@
 class CommentsController < ApplicationController
-
-  def new
-    @comment = Comment.new
-    @product = Product.find(params[:product_id])
-    respond_to do |format|
-      format.html
-      format.js
-  end
+  
+  load_resource :product
+  load_and_authorize_resource :through => :product
 
   def create
-    @comment = Comment.new(params[:comment])
-    @comment.product_id = params[:product_id]
-    @product = @comment.product
+    @comment.user = current_user
     comment.save
     respond_to do |format|
       format.html do

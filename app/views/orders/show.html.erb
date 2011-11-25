@@ -16,8 +16,22 @@
     <b>Pay type:</b>
     <%= @order.pay_type.name %>
   </p>
+  
+  <% if @order.ship_date %>
+    <p>
+      <b>Ship date:</b>
+      <%= @order.ship_date %>
+    </p>
+  <% end %>
 
   <table><%= render @order.line_items %></table>
 </div>
+
+  <% if can?(:ship, @order) && !@order.ship_date %>
+  <%= button_to 'Shipped', ship_order_path(@order), :method => :put,
+                :confirm => 'Are you sure?' %>
+  <% end %>
+
+
 
 <%= link_to 'Back', orders_path %>
